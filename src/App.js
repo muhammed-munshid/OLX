@@ -2,6 +2,7 @@ import React,{useEffect,useContext} from 'react';
 import { BrowserRouter as Router , Route } from 'react-router-dom';
 import Signup from './Pages/Signup'
 import Login from './Pages/Login'
+import Create from './Pages/Create'
 import './App.css';
 
 /**
@@ -29,6 +30,9 @@ function App() {
         </Route>
         <Route path='/login'>
           <Login />
+        </Route>
+        <Route path='/create'>
+          <Create />
         </Route>
       </Router>
 
