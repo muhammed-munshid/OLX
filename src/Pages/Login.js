@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import Login from '../Components/Login/Login';
+import { AuthContext } from '../Store/Context';
 
 function LoginPage() {
+  const { user } = useContext(AuthContext);
+  const history = useHistory()
   return (
     <div>
-      <Login />
+   {user ? history.push('/') : <Login />}
     </div>
   );
 }

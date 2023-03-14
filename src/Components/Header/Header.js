@@ -9,9 +9,15 @@ import SellButton from '../../assets/SellButton';
 import SellButtonPlus from '../../assets/SellButtonPlus';
 import { AuthContext, FirebaseContext } from '../../Store/Context';
 function Header() {
-const {user} = useContext(AuthContext)
-const {firebase} = useContext(FirebaseContext)
-const history = useHistory()
+  const { user } = useContext(AuthContext)
+  const { firebase } = useContext(FirebaseContext)
+  const history = useHistory()
+  const createHandle = () => {
+    history.push('/create')
+  }
+  const loginHandle = () => {
+    history.push('/login')
+  }
   return (
     <div className="headerParentDiv">
       <div className="headerChildDiv">
@@ -39,21 +45,30 @@ const history = useHistory()
           <Arrow></Arrow>
         </div>
         <div className="loginPage">
-          <span>{user ? `Welcome ${user.displayName}`: 'Login'}</span>
+          <span>{user ? `Welcome ${user.displayName}` : <span onClick={loginHandle}>Login</span>}</span>
           <hr />
-          {user && <span onClick={()=>{
-            firebase.auth().signOut();
+          {user && <span onClick={() => {
+            firebase.auth().signOut()
             history.push('/login')
           }}>Logout</span>}
         </div>
 
-        <div className="sellMenu">
-          <SellButton></SellButton>
-          <div className="sellMenuContent">
-            <SellButtonPlus></SellButtonPlus>
-            <span>SELL</span>
+        {user ?
+          <div className="sellMenu" onClick={createHandle}>
+            <SellButton></SellButton>
+            <div className="sellMenuContent">
+              <SellButtonPlus></SellButtonPlus>
+              <span>SELL</span>
+            </div>
           </div>
-        </div>
+          : <div className="sellMenu" onClick={loginHandle}>
+            <SellButton></SellButton>
+            <div className="sellMenuContent">
+              <SellButtonPlus></SellButtonPlus>
+              <span>SELL</span>
+            </div>
+          </div>
+        }
       </div>
     </div>
   );

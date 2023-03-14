@@ -42,7 +42,6 @@ function App() {
           </Route>
         </Router>
       </Post>
-
     </div>
   );
 }
