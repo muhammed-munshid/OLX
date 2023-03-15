@@ -27,6 +27,10 @@ export default function Signup() {
       })
     })
   }
+
+  const Login=()=>{
+    history.push('/login')
+  }
   return (
     <div>
       <div className="signupParentDiv">
@@ -83,7 +87,7 @@ export default function Signup() {
           <br />
           <button>Signup</button>
         </form>
-        <a href='/login'>Login</a>
+        <a href onClick={Login}>Login</a>
       </div>
     </div>
   );
